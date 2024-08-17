@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="\styles\main.css">
+    <title>Coctail</title>
+</head>
+<body>
+    <h1><u>𝓒𝓞𝓒𝓣𝓐𝓘𝓛</u></h1>
+    <img src="images\Cocktail-Image.jpg" alt="Cocktail-Image">
+    <form action="/recipe" method="post" class="buttons">
+        <button type="submit" value="Cocktail">
+            <img src="images/cocktail-icon.jpg" alt="a cocktail">
+        </button>
+    </form>
+    <% if(locals.drink) { %>
+        <div class="recipecontainer">
+            <h2 id="recipeTitle">
+                <u><%= drink.strDrink %></u>
+            </h2>
+            <div>
+                <h3>
+                    Instructions:
+                </h3>
+                <p> <%= drink.strInstructions %> </p>
+            </div>
+            <div>
+                <h3>
+                    Ingredients:
+                </h3>
+
+                <ul id="ingredientsList">
+                    <% for( let index = 1; index <= 15; index++ ) { %>
+                        <% if (drink["strIngredient"+index.toString()]) { %>
+                            <li><%= drink["strIngredient"+index.toString()]%> of <%= drink["strMeasure"+index.toString()] %> </li>
+                        <% } %>
+                    <% } %>
+                </ul>
+            </div>
+            <img class="image" src="<%= drink.strDrinkThumb %>" alt="the cocktail image">
+        </div>
+    <% } else {%>
+        <h2>Click the button for getting a Coctail recipe ☝️</h2>
+    <% } %>
+</body>
+</html>
